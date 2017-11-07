@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.delip.mappers.ResultMapper">
+	<insert id="create">
+		insert into dtb_restaurant
+		(rname, raddress, rtel, rlat, rlng)
+		values
+		(#{rname}, #{rhomepage}, #{raddress}, #{rtel}, #{rinfo}, #{rlat}, #{rlng})
+	</insert>
+
+
+	<select id="read" resultType="result">
+		select * from dtb_restaurant where rno = #{rno}
+	</select>
+
+
+</mapper>
