@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.delip.mappers.MemberMapper">
+	<!-- 01. 회원 등록 -->
+    <insert id="insertMember">
+        insert into dtb_member values (uid, upassword, file_name, file_path, uname, ulevel, utel)
+        (#{uid}, #{upassword}, #{file_name}, #{file_path}, #{uname}, #{ulevel}, #{utel})
+    </insert>
+    
+</mapper>

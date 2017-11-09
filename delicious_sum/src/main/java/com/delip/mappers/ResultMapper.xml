@@ -12,8 +12,8 @@
 	</insert>
 
 
-	<select id="read" resultType="result">
-		select * from dtb_restaurant where rno = #{rno}
+	<select id="search" resultType="com.delip.domain.Result">
+		select * from dtb_restaurant where raddress like %#{search}%
 	</select>
 
 
