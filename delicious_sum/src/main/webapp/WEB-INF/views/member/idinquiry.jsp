@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>아이디/비밀번호 찾기 폼</h1>
 </body>
 </html>

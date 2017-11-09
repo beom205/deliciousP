@@ -50,7 +50,8 @@ font-family: 'Pacifico', cursive;
     <div class="nav-wrapper container">
       <a id="logo-container" href="#" class="brand-logo">DeliciousP</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">로그인</a></li>
+        <li><a href="/member/login">로그인</a></li>
+        <li><a href="/member/join">회원가입</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">

@@ -9,8 +9,10 @@ public interface ResultService {
 	
 	public Result get(Integer rno);
 	
-    public List<Result> getList(Criteria cri);
+//    public List<Result> getList(String search);
+    public List<Result> getList();
 
 	int getListCount(Criteria cri);
+
 
 }
