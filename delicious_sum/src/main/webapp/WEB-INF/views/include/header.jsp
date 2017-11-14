@@ -1,26 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>DeliciousP : 지역별 맛집 검색 서비스</title>
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="/resources/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="/resources/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  
   <!-- 로고 폰트 -->
   <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
   
   <style>
+body {margin:0;}
 
+.topnav {
+  overflow: hidden;
+  background-color: #80cbc4;
+     min-width: 100%;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color:white;
+  font-family: 'Pacifico', cursive;
+  
+}
+
+.topnav a:hover {
+  background-color: #b2dfdb;
+  color: black;
+}
+
+.topnav a.active {
+    background-color: #26a69a;
+    color: white;
+}
+.topnav a.right{
+float: right;
+}
 #video { 
      position: absolute;
      top: 0px;
@@ -33,30 +54,17 @@
      overflow: hidden;
 }
 
-h1 {
-font-family: 'Pacifico', cursive;
- text-shadow: -3px 0 #F2F1F6, 0 3px #F2F1F6, 3px 0 #F2F1F6, 0 -3px #F2F1F6;
- -moz-text-shadow: -3px 0 #F2F1F6, 0 3px #F2F1F6, 3px 0 #F2F1F6, 0 -3px #F2F1F6;
- -webkit-text-shadow: -3px 0 #F2F1F6, 0 3px #F2F1F6, 3px 0 #F2F1F6, 0 -3px #F2F1F6;
-}
-
 </style>
 
 
 
 </head>
 <body>
-  <nav class="teal lighten-3" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">DeliciousP</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/member/login">로그인</a></li>
-        <li><a href="/member/join">회원가입</a></li>
-      </ul>
+<div class="topnav" style="position:fixed;">
+  <a class="active" href="/">DeliciousP</a>
+  <a href="#news">A</a>
+  <a href="#contact">B</a>
+  <a href="/member/join" class="right">회원가입</a>
+  <a href="/member/login" class="right">로그인</a>
+</div>
 
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">사이드바모바일</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>

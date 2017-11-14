@@ -1,9 +1,10 @@
 package com.delip.domain;
 
-import java.sql.Date;
 
+import lombok.Data;
+
+@Data
 public class ReviewRegister {
-	private int rNo;
-	private String uId, content, rName, rInfo, file_path, file_name;
-	private Date reg_date;
+	private String conveninece_keyword, mood_keyword, purpose_keyword, content;
+	private int avg_rate;
 }

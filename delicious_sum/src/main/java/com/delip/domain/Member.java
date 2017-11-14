@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class Member {
 	private String
-	uid, upassword, file_name, file_path, uname, ulevel, utel;
+	uid, upw, file_name, file_path, uname, ulevel, utel;
 }

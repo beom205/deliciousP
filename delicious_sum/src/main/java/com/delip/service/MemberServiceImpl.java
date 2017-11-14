@@ -17,9 +17,12 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public void register(Member member) {
-		// TODO Auto-generated method stub
-		log.info("dd");
 		mapper.register(member);
+	}
+
+	@Override
+	public Member getMemberIdAndPw(Member member) {
+		return mapper.getMemberIdAndPw(member);
 	}
 
 }

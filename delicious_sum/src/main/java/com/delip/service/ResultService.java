@@ -9,10 +9,11 @@ public interface ResultService {
 	
 	public Result get(Integer rno);
 	
-//    public List<Result> getList(String search);
-    public List<Result> getList();
+//    public List<Result> getList();
 
-	int getListCount(Criteria cri);
+//	int getListCount(Criteria cri);
+
+	List<Result> getList(String keyword);
 
 
 }

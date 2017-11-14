@@ -2,6 +2,7 @@ package com.delip.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,50 +19,62 @@ import lombok.extern.java.Log;
 public class MemberController {
 	
 	@Autowired
-	MemberService s;
-	
+	MemberService mService;
+
 	@GetMapping("/join")
 	public void MemberJoin() {
-		
+
 	}
-	
+
+	@GetMapping("/sample")
+	public void sample() {
+
+	}
+
 	@GetMapping("/login")
 	public void MemberLogin() {
-		
+
 	}
-	
+
 	@GetMapping("/dropout")
 	public void MemberLogout() {
-		
+
 	}
-	
+
 	@GetMapping("/idinquiry")
 	public void MemberInquiry() {
-		
+
 	}
-	
-//	@PostMapping("/join")
-//	public String registerPost(Member member, RedirectAttributes rttr) {
-//		
-//		rttr.addFlashAttribute("result", "success");
-//		
-//		return "redirect:/member/join";
-//	}
+
+	// @PostMapping("/join")
+	// public String registerPost(Member member, RedirectAttributes rttr) {
+	//
+	// rttr.addFlashAttribute("result", "success");
+	//
+	// return "redirect:/member/join";
+	// }
+
 	// 회원가입
 	@PostMapping("/join")
-	public void registerPost(@RequestParam(name="userId") String id,@RequestParam(name="userPw") String pw,@RequestParam(name="nickName") String nickName,@RequestParam(name="level") String level) {
-		log.info(id);
-		log.info(pw);
-		log.info(nickName);
-		log.info(level);
-		Member m = new Member();
-		m.setUid(id);
-		m.setUpassword(pw);
-		m.setUname(nickName);
-		m.setUlevel(level);
-		s.register(m);
+	public String registerPost(Member member) {
+
+		mService.register(member);
+
+		return "redirect:/";
 	}
-	
+
 	// 로그인
+	@PostMapping("/login")
+	public void loginPost(Member member, Boolean rememberId, Boolean rememberMe, Model model) {
+		log.info("" + rememberId);
+		log.info("" + rememberMe);
+		log.info("사용자 :" + mService.getMemberIdAndPw(member));
+
+		model.addAttribute("uno", mService.getMemberIdAndPw(member));
+		model.addAttribute("rememberId", rememberId);
+		model.addAttribute("remember", rememberMe);
+
+		// return "redirect:/";
+	}
 	
 }

@@ -2,12 +2,14 @@ package com.delip.web;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.delip.domain.Result;
@@ -24,14 +26,16 @@ public class ResultController {
 	private ResultService service;
 
 	@GetMapping("/test")
-	public void list(Model model) {
-		model.addAttribute("list", service.getList());
+	public void list(Model model, String keyword) {
+		model.addAttribute("list", service.getList(keyword));
+		model.addAttribute("keyword",keyword);
 	}
 	
-	@RequestMapping("/ajax")
+	@RequestMapping(value="/ajax", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Result> list2() {
-		return service.getList();		// System.out.println(admin.getAdminId()+admin.getAdminPw());
+	public List<Result> moreList(@Param("keyword") String keyword) {
+		log.info("keyword["+keyword+"]");
+		return service.getList(keyword);	
 	}
 //	@GetMapping("/test")
 //	public void search(@RequestParam(name="search") String search, Model model) {

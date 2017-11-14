@@ -19,8 +19,8 @@ public class ResultServiceImpl implements ResultService {
 	private ResultMapper mapper;
 	
 	@Override
-	public List<Result> getList() {
-		return mapper.getList();
+	public List<Result> getList(String keyword) {
+		return mapper.getList(keyword);
 	}
 	 
 //	@Override
@@ -29,11 +29,11 @@ public class ResultServiceImpl implements ResultService {
 //		return mapper.getList(search);
 //	}
 	
-	@Override
-	public int getListCount(Criteria cri) {
-		// TODO Auto-generated method stub
-		return mapper.getTotal(cri);
-	}
+//	@Override
+//	public int getListCount(Criteria cri) {
+//		// TODO Auto-generated method stub
+//		return mapper.getTotal(cri);
+//	}
 
 	@Override
 	public Result get(Integer rno) {

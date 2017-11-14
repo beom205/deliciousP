@@ -11,10 +11,20 @@
 		(#{rname}, #{rhomepage}, #{raddress}, #{rtel}, #{rinfo}, #{rlat}, #{rlng})
 	</insert>
 
-
+<!-- 
 	<select id="search" resultType="com.delip.domain.Result">
 		select * from dtb_restaurant where raddress like %#{search}%
 	</select>
-
+ -->
+	
+	<select id="getList" resultType= "com.delip.domain.Result">
+		select * from dtb_restaurant
+		where rno > 0
+		and (rname like CONCAT ('%', #{keyword}, '%' )
+		OR
+		raddress like 	CONCAT ('%', #{keyword}, '%' )
+		OR
+		rinfo like CONCAT ('%', #{keyword}, '%' ))
+	</select>
 
 </mapper>
