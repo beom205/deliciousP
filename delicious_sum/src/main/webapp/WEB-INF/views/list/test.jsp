@@ -90,7 +90,7 @@ body {
 /* Create three equal columns that floats next to each other */
 .column1 {
 	float: left;
-	width: 20%;
+	width: 30%;
 	padding: 10px;
 	height: 200px; /* Should be removed. Only for demonstration */
 	overflow: hidden;
@@ -106,7 +106,7 @@ body {
 
 .column3 {
 	float: left;
-	width: 40%;
+	width: 30%;
 	padding: 10px;
 	height: 200px; /* Should be removed. Only for demonstration */
 	border-left: 3px double #80cbc4;
@@ -339,10 +339,10 @@ hr {
 	</div>
 
 		 -->
-	<div style="padding-top: 372px; margin-left: 30%; margin-right:30%;">
+	<div style="padding-top: 372px; margin-left: 20%; margin-right:20%;">
 		<c:forEach items="${list}" begin="0" end="5" var="result">
 			<div class="column1" >
-				<img src="/display?${result.file_name}" style="width: 100%;">
+				<img src="/list/display?name=s_${result.file_name}" style="width: 100%;">
 			</div>
 			<div class="column2">
 				<h2>
