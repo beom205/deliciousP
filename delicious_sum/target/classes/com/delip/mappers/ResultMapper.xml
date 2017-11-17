@@ -15,11 +15,20 @@
 	<select id="search" resultType="com.delip.domain.Result">
 		select * from dtb_restaurant where raddress like %#{search}%
 	</select>
+		select *
+        from  dtb_rest_photo resp, dtb_restaurant res
+		where res.rno = resp.rno
+		and (rname like CONCAT ('%', '강', '%' )
+		OR
+		raddress like 	CONCAT ('%', '강', '%' )
+		OR
+		rinfo like CONCAT ('%', '강', '%' ));
  -->
 	
 	<select id="getList" resultType= "com.delip.domain.Result">
-		select * from dtb_restaurant
-		where rno > 0
+		select * 
+		from dtb_rest_photo resp, dtb_restaurant res
+		where res.rno = resp.rno
 		and (binary rname like CONCAT ('%', #{keyword}, '%' )
 		OR
 		binary raddress like 	CONCAT ('%', #{keyword}, '%' )

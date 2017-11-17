@@ -164,8 +164,16 @@ hr {
 												};
 												var map = new daum.maps.Map(
 														container, options);
-
-												var points = [
+												var points=[];
+												if(data.length<5){
+													
+												for(var v= 0; v<data.length; v++){
+													points[v] = new daum.maps.LatLng(
+															data[v].rlat,
+															data[v].rlng)
+												}
+												}else{
+												points = [
 														new daum.maps.LatLng(
 																data[0].rlat,
 																data[0].rlng),
@@ -181,6 +189,8 @@ hr {
 														new daum.maps.LatLng(
 																data[4].rlat,
 																data[4].rlng) ];
+												}
+
 												var bounds = new daum.maps.LatLngBounds();
 												var i;
 												var marker = [];
@@ -332,19 +342,19 @@ hr {
 	<div style="padding-top: 372px; margin-left: 30%; margin-right:30%;">
 		<c:forEach items="${list}" begin="0" end="5" var="result">
 			<div class="column1" >
-				<img src="/resources/samplerest.jpg" style="width: 100%;">
+				<img src="/display?${result.file_name}" style="width: 100%;">
 			</div>
 			<div class="column2">
 				<h2>
 					<a href="/list/detail?rno=${result.rno}"><c:out value='${result.rname}'></c:out></a>
 				</h2>
-				<h5>레스토랑 타입</h5>
+				<h5><c:out value='${result.rinfo}'></c:out></h5>
 				<h5>
 					<c:out value='${result.raddress}'></c:out>
 				</h5>
 			</div>
 			<div class="column3">
-				<h4>정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;rinfo</h4>
+				<h4>영업시간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<c:out value='${result.rtime}'></c:out></h4>
 
 				<h4>
 					전화번호 |&nbsp;
