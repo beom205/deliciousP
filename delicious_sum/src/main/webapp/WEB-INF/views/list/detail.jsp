@@ -158,6 +158,10 @@
         	$("#reviewForm").submit();
         });
         
+		function formatDate(reg){
+			return new Date(reg).toLocaleDateString();
+		}
+	
         function reviewPlus(){
         	$.ajax({
         		url:"/list/review",
@@ -173,7 +177,7 @@
         			rStr += '<div>'+data[i].mphoto+'</div>';
         			rStr += '<div>'+data[i].uid+'</div>';
         			rStr += '<div class="star_'+data[i].avg_rate+'">★★★★★ '+data[i].avg_rate+'</div>';
-        			rStr += '<div>'+data[i].reg_date+'</div>';
+        			rStr += '<div>'+formatDate(data[i].reg_date)+'</div>';
         			rStr += '<div>'+data[i].content+'</div>';
 					
 					for(var j = 0; j < data[i].rphoto.length ; j++){
