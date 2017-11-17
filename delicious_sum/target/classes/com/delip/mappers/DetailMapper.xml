@@ -10,8 +10,12 @@
 	
 <insert id="create">
 		insert into dtb_restaurant (rname,raddress,rtel,rhomepage,rinfo, rholiday, rtime)
-		values(#{rname},#{raddress},#{rtel},#{rhomepage},#{rinfo},#{rholiday},#{rtime})
+		values (#{rname},#{raddress},#{rtel},#{rhomepage},#{rinfo},#{rholiday},#{rtime})
 </insert>
+
+<select id="readRNO" resultType="Integer">
+	select max(rno) from dtb_restaurant
+</select>
 
 <update id="update">
 	update dtb_restaurant 

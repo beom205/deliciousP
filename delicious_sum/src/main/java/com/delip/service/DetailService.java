@@ -8,7 +8,7 @@ import com.delip.domain.ReviewRegister;
 
 public interface DetailService {
 
-   public void register(Detail detail, Photo photo);; //등록
+   public int register(Detail detail, Photo photo);; //등록
 
    public Detail get(Integer rno); // 조회
 
@@ -18,8 +18,8 @@ public interface DetailService {
 
    public List<ReviewRegister> getReview(Integer rno); // 리뷰
    
-   //public void detailFile(Photo photo); // 파일 업로드	
-
-   //public void update(Detail detail);
+   public String getPhoto(Integer rno);//사진 조회
+   
+ 
 
 }

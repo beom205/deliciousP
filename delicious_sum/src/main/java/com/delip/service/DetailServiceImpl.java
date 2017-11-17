@@ -26,18 +26,25 @@ public class DetailServiceImpl implements DetailService {
 
 	@Override
 	@Transactional
-	public void register(Detail detail, Photo photo) {
+	public int register(Detail detail, Photo photo) {
 		log.info("register");
 		mapper.register(detail);
 		log.info("디테일 등록은 완료, but photo는 아직임");
 		pMapper.restPhoto(photo);
-
+		
+		return mapper.readRNO();
 	}
 
 	@Override
 	public Detail get(Integer rno) {
 		log.info("ServiceImple rno: " + rno);
 		return mapper.readDetail(rno);
+	}
+	
+
+	@Override
+	public String getPhoto(Integer rno) {
+		return pMapper.readPhoto(rno);
 	}
 
 	@Override
@@ -59,5 +66,6 @@ public class DetailServiceImpl implements DetailService {
 
 		return mapper.readReview(rno);
 	}
+
 
 }
