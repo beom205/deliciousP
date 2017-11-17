@@ -20,11 +20,11 @@
 	<select id="getList" resultType= "com.delip.domain.Result">
 		select * from dtb_restaurant
 		where rno > 0
-		and (rname like CONCAT ('%', #{keyword}, '%' )
+		and (binary rname like CONCAT ('%', #{keyword}, '%' )
 		OR
-		raddress like 	CONCAT ('%', #{keyword}, '%' )
+		binary raddress like 	CONCAT ('%', #{keyword}, '%' )
 		OR
-		rinfo like CONCAT ('%', #{keyword}, '%' ))
+		binary rinfo like CONCAT ('%', #{keyword}, '%' ))
 	</select>
 
 </mapper>

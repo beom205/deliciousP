@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.delip.domain.Member;
 import com.delip.service.MemberService;
@@ -21,18 +22,8 @@ public class MemberController {
 	@Autowired
 	MemberService mService;
 
-	@GetMapping("/join")
-	public void MemberJoin() {
-
-	}
-
-	@GetMapping("/sample")
+	@GetMapping("/samplet")
 	public void sample() {
-
-	}
-
-	@GetMapping("/login")
-	public void MemberLogin() {
 
 	}
 
@@ -46,15 +37,19 @@ public class MemberController {
 
 	}
 
-	// @PostMapping("/join")
-	// public String registerPost(Member member, RedirectAttributes rttr) {
-	//
-	// rttr.addFlashAttribute("result", "success");
-	//
-	// return "redirect:/member/join";
-	// }
-
+	// 아이티 중복 체크
+	@PostMapping("/checkID")
+	@ResponseBody
+	public Integer checkIDPost(String uid) {
+		return mService.checkId(uid);
+	}
+	
 	// 회원가입
+	@GetMapping("/join")
+	public void MemberJoin() {
+
+	}
+
 	@PostMapping("/join")
 	public String registerPost(Member member) {
 
@@ -64,17 +59,51 @@ public class MemberController {
 	}
 
 	// 로그인
-	@PostMapping("/login")
-	public void loginPost(Member member, Boolean rememberId, Boolean rememberMe, Model model) {
-		log.info("" + rememberId);
-		log.info("" + rememberMe);
-		log.info("사용자 :" + mService.getMemberIdAndPw(member));
+	@GetMapping("/login")
+	public void MemberLogin() {
 
-		model.addAttribute("uno", mService.getMemberIdAndPw(member));
-		model.addAttribute("rememberId", rememberId);
-		model.addAttribute("remember", rememberMe);
-
-		// return "redirect:/";
 	}
+
+	@PostMapping("/loginPost")
+	public String loginPost(Member vo, Boolean remember, Model model) {
+
+		Member member = mService.getMemberIdAndPw(vo);
+
+		if (member != null) {
+			model.addAttribute("member", member.getUid());
+			model.addAttribute("remember", remember);
+			return "redirect:/";
+		}
+		model.addAttribute("msg", false);
+		return "redirect:/member/login";
+	}
+
+	// // 로그아웃
+	// @GetMapping("/logout")
+	// public String logoutGet(HttpServletRequest request, HttpServletResponse
+	// response, HttpSession session)
+	// throws IOException {
+	// Object obj = session.getAttribute("mnoSession");
+	// // log.info("갖고 있던 세션: " + obj.toString());
+	// if (obj != null) {
+	// session.removeAttribute("mnoSession");
+	// session.invalidate();
+	//
+	// Cookie loginCookie = WebUtils.getCookie(request, "mnoCookie");
+	//
+	// // log.info("갖고 있던 쿠키: " + loginCookie.getValue());
+	//
+	// if (loginCookie != null) {
+	// loginCookie.setPath("/");
+	// loginCookie.setMaxAge(0);
+	// // log.info("삭제 후 쿠키: " + loginCookie.getValue());
+	// response.addCookie(loginCookie);
+	// }
+	// }
+	//
+	// // log.info("삭제 후 세션: " + session.getAttribute("mnoSession"));
+	// return "redirect:/";
+	//
+	// }
 	
 }

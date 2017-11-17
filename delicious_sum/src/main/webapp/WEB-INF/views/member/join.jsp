@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../include/header.jsp"%>
+<link href="https://fonts.googleapis.com/css?family=Pacifico"
+	rel="stylesheet">
 <style>
+/* 로그인것  */
 body {
 	display: table-cell;
-	/* vertical-align: middle; */
+	vertical-align: middle;
 	background-color: #e0f2f1 !important;
-
 }
 
 html {
 	display: table;
-	/* margin: auto; */
+	margin: auto;
 }
 
 html, body {
@@ -62,8 +64,71 @@ html, body {
 	-o-transform: translateY(0%);
 	transform: translateY(0%);
 }
-</style>
 
+
+/* 원본 */
+/* body {
+	display: table-cell;
+	/* vertical-align: middle; */
+	background-color: #e0f2f1 !important;
+
+}
+
+html {
+	display: table;
+	 
+}
+
+html, body {
+	height: 100%;
+}
+
+ .medium-small {
+	font-size: 0.9rem;
+	margin: 0;
+	padding: 0;
+}
+
+.login-form {
+	width: 280px;
+}
+
+.login-form-text {
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 0.8rem;
+}
+
+.login-text {
+	margin-top: -6px;
+	margin-left: -6px !important;
+}
+
+.margin {
+	margin: 0 !important;
+}
+
+.pointer-events {
+	pointer-events: auto !important;
+}
+
+.input-field>.material-icons {
+	padding-top: 10px;
+}
+
+.input-field div.error {
+	position: relative;
+	top: -1rem;
+	left: 3rem;
+	font-size: 0.8rem;
+	color: #FF4081;
+	-webkit-transform: translateY(0%);
+	-ms-transform: translateY(0%);
+	-o-transform: translateY(0%);
+	transform: translateY(0%);
+}  */
+</style>
+<%@include file="../include/mate.html"%>
 <body>
 <div id="login-page" class="row">
 		<div class="col s12 z-depth-4 card-panel">

@@ -25,4 +25,9 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.getMemberIdAndPw(member);
 	}
 
+	@Override
+	public Integer checkId(String uid) {
+		return mapper.checkId(uid);
+	}
+
 }

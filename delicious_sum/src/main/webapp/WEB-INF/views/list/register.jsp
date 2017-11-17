@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="../js/jquery-3.2.1.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 <title>등록</title>
 </head>
 <body>
- <h1>${detail.rname}</h1>
- <h3>${detail.rinfo}</h3>
- <hr>  
-   <form name="form1" method="post" action="${path}/list/register">
+   <form name="form1" method="post" action="${path}/list/register" enctype='multipart/form-data'>
             <table class="detail_view">
             <colgroup>
                 <col width="15%">
@@ -21,71 +21,122 @@
             <tbody>
                 <tr>
                     <th scope="row">업체명</th>
-                    <td><input name="rname" id="rname" size="80" value="${detail.rname}" placeholder="업체명을 입력해주세요"></td>
+                    <td><input name="rname" id="rname" size="80" placeholder="업체명을 입력해주세요"></td>
                 </tr>
                   <tr>
                     <th scope="row">주소</th>
-                    <td><input name="radress" id="radress" size="80" value="${detail.radress}" placeholder="주소를 입력해주세요"></td>
+                    <td><input name="raddress" id="raddress" size="80" placeholder="주소를 입력해주세요"></td>
                 </tr>
               <tr>
                     <th scope="row">전화</th>
-                    <td><input name="rtel" id="rtel" size="80" value="${detail.rtel}"></input></td>
+                    <td><input name="rtel" id="rtel" size="80" placeholder="전화번호"></input></td>
                 </tr>
                  <tr>
                     <th scope="row">홈페이지</th>
-                    <td><input name="rhomepage" id="rhomepage" size="80" value="${detail.rhomepage}" placeholder="홈페이지 주소입력해주세요"></input></td>
+                    <td><input name="rhomepage" id="rhomepage" size="80" placeholder="홈페이지 주소입력해주세요"></input></td>
                 </tr>
                 <tr>
                     <th scope="row">영업시간</th>
-                    <td><input name="rtime" id="rtime" size="80" value="${detail.rtime}" placeholder="홈페이지 주소입력해주세요"></input></td>
+                    <td><input name="rtime" id="rtime" size="80"  placeholder="영업시간 "></input></td>
                 </tr>
                 <tr>
                     <th scope="row">휴무일</th>
-                    <td><input name="rholiday" id="rholiday" size="80" value="${detail.rholiday}" placeholder="홈페이지 주소입력해주세요"></input></td>
+                    <td><input name="rholiday" id="rholiday" size="80" placeholder="휴무일"></input></td>
                 </tr>
-               <button>메뉴판사진등록</button>
+                 <tr>
+                    <th scope="row">정보</th>
+                    <td><input name="rinfo" id="rinfo" size="80" placeholder="정보"></input></td>
+                </tr>
+                <tr>
+                    <th scope="row">위도</th>
+                    <td><input name="rlng" id="rlng" size="80"  placeholder="위도"></input></td>
+                </tr>
+                <tr>
+                    <th scope="row">경도</th>
+                    <td><input name="rlat" id="rlat" size="80" placeholder="경도"></input></td>
+                </tr>
+                <tr>
+                    <th scope="row">이미지</th>
+                    <td><input type="file" name="f1" id="f1" size="80"></input></td>
+                </tr>
             </tbody>
         </table>
-         <button type="button" id="btnSave">확인</button>
-           <button type="reset">취소</button>  
-</form>
-
+          <button type="button" id="btnSave">확인</button>
+   		  <button type="reset">취소</button>
+   </form>
+  <form id="form1" runat="server">
+      <input type='file' id="imgInp" name="commentParentFile"/>
+            <img id="blah" src="#"/>
+   </form>
+  
+	<ul class="uploadList">
+   </ul>
+   
+   <form id="oper">
+   
+   </form>
+   
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 <script>
-    $(document).ready(function(){
-        $("#btnSave").click(function(){
-            var rname = $("#rname").val();
-            var radress = $("#radress").val();
-            var rtel = $("#rtel").val();
-            var rhomepage = $("#rhomepage").val();
-            var rhomepage = $("#rtime").val();
-            var rhomepage = $("#rholiday").val();
-            if(rname == ""){
-                document.form1.rname.focus();
-                return;
-            }
-            if(radress == ""){
-                document.form1.radress.focus();
-                return;
-            }
-            if(rtel == ""){
-                document.form1.rtel.focus();
-                return;
-            }
-            if(rhomepage == ""){
-                document.form1.rhomepage.focus();
-                return;
-            }
-            if(rtime == ""){
-                document.form1.rtime.focus();
-                return;
-            }
-            if(rholiday == ""){
-                document.form1.rholiday.focus();
-                return;
-            }
-            document.form1.submit();
-        });
+
+	$(document).ready(function(){
+	
+    $("#btnSave").click(function(){
+    	
+        var rname = $("#rname").val();
+        var raddress = $("#raddress").val();
+        var rtel = $("#rtel").val();
+        var rhomepage = $("#rhomepage").val();
+        var rtime = $("#rtime").val();
+        var rholiday = $("#rholiday").val();
+        var rinfo = $("#rinfo").val();
+        var rlat = $("#rlat").val();
+        var rlng = $("#rlng").val();
+        if(rname == ""){
+            document.form1.rname.focus();
+            return;
+        }
+        if(raddress == ""){
+            document.form1.raddress.focus();
+            return;
+        }
+        if(rtel == ""){
+            document.form1.rtel.focus();
+            return;
+        }
+        if(rhomepage == ""){
+            document.form1.rhomepage.focus();
+            return;
+        }
+        if(rtime == ""){
+            document.form1.rtime.focus();
+            return;
+        }
+        if(rholiday == ""){
+            document.form1.rholiday.focus();
+            return;
+        }
+        if(rinfo == ""){
+            document.form1.rinfo.focus();
+            return;
+        }
+        if(rlat == ""){
+            document.form1.rlat.focus();
+            return;
+        }
+        if(rlng == ""){
+            document.form1.rlng.focus();
+            return;
+        }
+        document.form1.submit();
     });
+    
+});
+	
+   
 </script>
 
 </body>

@@ -6,12 +6,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상세</title>
 </head>
+<style>
+.star{
+	z-index: -1;
+}
+.white{
+	background-color: red;
+	width:100px;
+}
+</style>
 <body>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 <div id="map" style="width:;height:350px;"></div>
 <form role= "form" method="post">
    <input type="hidden" name="rno" value="${detail.rno}">
 </form>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0aae48ac4ccf8056a81bead68dbb539c"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=86372a8403c72bd6350b05636cc843f8"></script>
    <script>
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
           mapOption = {
@@ -65,12 +78,10 @@
       });
    </script>
    
-    <h1>${detail.rname}</h1>
- <h3>${detail.rinfo}</h3>
- <hr>  
    
- <form name="form1" method="post">
- 
+ <h1>${detail.rname}</h1>
+ <h3>${detail.rinfo}</h3>
+ <hr> 
         <table class="board_view">
             <colgroup>
                 <col width="15%">
@@ -80,82 +91,134 @@
             <tbody>
                 <tr>
                     <th scope="row">업체명</th>
-                    <td><input name="rname" id="rname" size="80" value="${detail.rname}" placeholder="업체명을 입력해주세요"></td>
+                   
+                      <td><h2>${detail.rname}</h2></td>
                 </tr>
                   <tr>
                     <th scope="row">주소</th>
-                    <td><input name="raddress" id="radress" size="80" value="${detail.raddress}" placeholder="주소를 입력해주세요"></td>
+                    <td><h2>${detail.raddress}</h2></td>
                 </tr>
-              <tr>
+                  <tr>
                     <th scope="row">전화</th>
-                    <td><input name="rtel" id="rtel" size="80" value="${detail.rtel}"></input></td>
+                    <td><h2>${detail.rtel}</h2></td>
+                </tr>
+                  <tr>
+                    <th scope="row">홈페이지</th>
+                    <td><h2>${detail.rhomepage}</h2></td>
+                </tr>
+                  <tr>
+                    <th scope="row">영업시간</th>
+                    <td><h2>${detail.rtime}</h2></td>
+                </tr>
+                  <tr>
+                    <th scope="row">휴무일</th>
+                    <td><h2>${detail.rholiday}</h2></td>
                 </tr>
                  <tr>
-                    <th scope="row">홈페이지</th>
-                    <td><input name="rhomepage" id="rhomepage" size="80" value="${detail.rhomepage}" placeholder="홈페이지주소"></input></td>
-                </tr>
-                <tr>
-                    <th scope="row">영업시간</th>
-                     <td><input name="rtime" id="rtime" size="80" value="${detail.rtime}" placeholder="영업시간 "></input></td>
-                </tr>
-                <tr>
-                    <th scope="row">휴무일</th>
-                     <td><input name="rholiday" id="rholiday" size="80" value="${detail.rholiday}" placeholder="휴무일"></input></td>
-                </tr>
-                           
+                    <th scope="row">정보</th>
+                    <td><h2>${detail.rinfo}</h2></td>
+                </tr>          
             </tbody>
         </table>
-         
+    <form name="form1" id="formId">    
         <input type="hidden" name="rno" value="${detail.rno}">
+        <button type="button" id="btnRegister">평가하기</button>
         <button type="button" id="btnUpdete">수정</button>
         <button type="button" id="btnDelete">삭제</button>
+        <hr>
+        <button type="button" id="btnReviewPlus">댓글 보기</button>
+         <div class="hidden reviewDiv" >
+    
+        </div>
     </form>
-
+	<form id="reviewForm" action="/register/review" >
+    	<input type="hidden" name="rno" value="${detail.rno}"> 
+    </form>
 <script>
+	/* 디테일 스크립트 */
     $(document).ready(function(){
         $("#btnDelete").click(function(){
             if(confirm("삭제하시겠습니까?")){
-                document.form1.action = "${path}/list/remove";
-                document.form1.submit();
-            }
+              $("#formId").attr("method","POST")
+              			  .attr("action","/list/remove");
+            	document.form1.submit();
+            }    	
+        });
+    	
+    	$("#btnUpdete").on("click",function(){
+    		 $("#formId").attr("action","/list/modify");
+    	    document.form1.submit();
+    		
+    	});
+    });
+	
+	/* 댓글 스크립트 */
+	 $("#btnRegister").on('click', function(){
+        	console.log("버튼 눌림");
+        	$("#reviewForm").submit();
         });
         
-        $("#btnUpdete").click(function(){
-            var rname = $("#rname").val();
-            var radress = $("#radress").val();
-            var rtel = $("#rtel").val();
-            var rhomepage = $("#rhomepage").val();
-            var rhomepage = $("#rtime").val();
-            var rhomepage = $("#rholiday").val();
-            if(rname == ""){
-                document.form1.rname.focus();
-                return;
-            }
-            if(radress == ""){
-                document.form1.radress.focus();
-                return;
-            }
-            if(rtel == ""){
-                document.form1.rtel.focus();
-                return;
-            }
-            if(rhomepage == ""){
-                document.form1.rhomepage.focus();
-                return;
-            }
-            if(rhomepage == ""){
-                document.form1.rtime.focus();
-                return;
-            }
-            if(rhomepage == ""){
-                document.form1.rhomepage.focus();
-                return;
-            }
-            document.form1.action="${path}/list/modify"
-            document.form1.submit();
+        function reviewPlus(){
+        	$.ajax({
+        		url:"/list/review",
+        		data:"rno=${detail.rno}",
+        		dataType: "json"
+        	}).done(function(data){
+        		console.log("탓는지");
+        		console.log(data);
+        		
+        		var rStr = "";
+        		for(var i = 0 ; i < data.length; i++){
+        			rStr += '<div>';
+        			rStr += '<div>'+data[i].mphoto+'</div>';
+        			rStr += '<div>'+data[i].uid+'</div>';
+        			rStr += '<div class="star_'+data[i].avg_rate+'">★★★★★ '+data[i].avg_rate+'</div>';
+        			rStr += '<div>'+data[i].reg_date+'</div>';
+        			rStr += '<div>'+data[i].content+'</div>';
+					
+					for(var j = 0; j < data[i].rphoto.length ; j++){
+						var rp = data[i].rphoto[j];
+						if(rp.endsWith(".jpg")){
+							rStr += '<img src="/register/display?name=s_'+rp+'">';
+						}
+					}
+        			rStr += '<div>방문목적 : '+data[i].convenience_keyword+'</div>';
+        			rStr += '<div>분위기 : '+data[i].mood_keyword+'</div>';
+        			rStr += '<div>편의시설 : '+data[i].purpose_keyword+'</div>';
+        			rStr += '</div>';
+        			rStr += '<hr>';
+        			
+        			/*
+        			rStr += '<div>'+
+    						'<div>'+data[i].mphoto+'</div>'+
+    						'<div>'+data[i].uid+'</div>'+
+    						'<div class="star_'+data[i].avg_rate+'">★★★★★ '+data[i].avg_rate+'</div>'+
+    						'<div>'+data[i].reg_date+'</div>'+
+    						'<div>'+data[i].content+'</div>'+
+    						
+    						for(var j = 0; j < data[i].rphoto.length ; j++){
+    							var rp = data[i].rphoto[j];
+    							if(rp.endsWith(".jpg")){
+			        			'<img src="/register/display?name=s_'+rp+'">'+
+    							}
+    						}
+        					'<div>방문목적 : '+data[i].convenience_keyword+'</div>'+
+        					'<div>분위기 : '+data[i].mood_keyword+'</div>'+
+        					'<div>편의시설 : '+data[i].purpose_keyword+'</div>'+
+    						'</div>'
+    				*/
+        		}
+        		$(".reviewDiv").html(rStr);
+        	});
+        }  
+        
+        $("#btnReviewPlus").on('click', function(){
+        	$(".reviewDiv").toggleClass("hidden");
+        	if(!$(".reviewDiv").hasClass("hidden")){
+        		reviewPlus();		
+        	}
         });
-    });
-</script>
 
+</script>
 </body>
 </html>

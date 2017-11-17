@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.delip.mappers.ReviewMapper">
+
+	<resultMap type="com.delip.domain.ReviewRegister" id="reviewMap">
+		<result property="bno" column="bno" />
+		<result property="rno" column="rno" />
+		<result property="content" column="content" />
+		<result property="uid" column="uid" />
+		<result property="avg_rate" column="avg_rate" />
+		<result property="reg_date" column="reg_date" />
+		<result property="mphoto" column="mphoto" />
+		<result property="mood_keyword" column="mood_keyword" />
+		<result property="convenience_keyword" column="convenience_keyword" />
+		<result property="purpose_keyword" column="purpose_keyword" />
+		<collection property="rphoto" ofType="string">
+			<result column="rphoto" />
+		</collection>
+	</resultMap>
+	
+	<select id="getReviews" resultMap="reviewMap">
+		select getid.rno rno,getid.bno bno, getid.uid uid ,getid.file_name mphoto , photo.file_name rphoto, getid.content content, getid.reg_date reg_date, getid.avg_rate avg_rate, getid.mood_keyword mood_keyword, getid.convenience_keyword convenience_keyword, getid.purpose_keyword purpose_keyword
+		from(
+		select review.rno ,review.bno , review.uid ,member.file_name, review.content, review.reg_date, review.avg_rate, review.mood_keyword, review.convenience_keyword, review.purpose_keyword
+		from
+		(select * from dtb_review where rno = #{rno}) review left outer join dtb_member member on  member.uid = review.uid)getid left outer join dtb_review_photo photo 
+		on photo.bno = getid.bno
+		order by bno desc
+	</select>
+	
+	<select id="getReviewsList" resultMap="reviewMap">
+		select getid.rno rno,getid.bno bno, getid.uid uid ,getid.file_name mphoto , photo.file_name rphoto, getid.content content, getid.reg_date reg_date, getid.avg_rate avg_rate, getid.mood_keyword mood_keyword, getid.convenience_keyword convenience_keyword, getid.purpose_keyword purpose_keyword
+		from(
+		select review.rno ,review.bno , review.uid ,member.file_name, review.content, review.reg_date, review.avg_rate, review.mood_keyword, review.convenience_keyword, review.purpose_keyword
+		from
+		(select * from dtb_review where rno = #{rno}) review left outer join dtb_member member on  member.uid = review.uid)getid left outer join dtb_review_photo photo 
+		on photo.bno = getid.bno
+		order by bno desc limit #{cri.skip}, #{cri.size}
+	</select>
+	
+	<insert id="insertReview">
+		<selectKey resultType="Integer" keyProperty="bno" order="BEFORE">
+			select IFNULL(MAX(bno),0)+1 from dtb_review
+		</selectKey>
+	
+		insert into dtb_review (bno, rno, uid, content, purpose_keyword, avg_rate, service_rate, price_rate, taste_rate, reg_date, mood_keyword, convenience_keyword)
+		values (#{bno}, #{rno}, #{uid}, #{content}, #{purpose_keyword}, #{avg_rate}, #{service_rate}, #{price_rate}, #{taste_rate}, current_timestamp, #{mood_keyword}, #{convenience_keyword})
+	</insert>
+</mapper>

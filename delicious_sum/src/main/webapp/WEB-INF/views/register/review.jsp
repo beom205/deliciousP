@@ -6,14 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="/../resources/dist/star.css">
+<link rel="stylesheet" type="text/css" href="/../resources/css/star.css">
  
 <title>Insert title here</title>
 </head>
 <body>
-	<form role="form" id="fid" method="post" enctype="multipart/form-data" action="list/detail">
-	<input type="file" class="file" name="file">
-	<!-- <input type="hidden" class="fileVal" name="file" value=fileUpload> -->
+	<form role="form" id="fid" method="post" enctype="multipart/form-data">
+		<input type="file" class="file" name="file">
+		<input type="hidden" name="rno" value="${rno.rno}">
 		 <span class="star-input">
 			<span class="input">
 				<input type="radio" name="star-input" id="p1" value="1"><label for="p1">1</label>
@@ -21,11 +21,6 @@
 				<input type="radio" name="star-input" id="p3" value="3"><label for="p3">3</label>
 				<input type="radio" name="star-input" id="p4" value="4"><label for="p4">4</label>
 				<input type="radio" name="star-input" id="p5" value="5"><label for="p5">5</label>
-				<input type="radio" name="star-input" id="p6" value="6"><label for="p6">6</label>
-			    <input type="radio" name="star-input" id="p7" value="7"><label for="p7">7</label>
-			    <input type="radio" name="star-input" id="p8" value="8"><label for="p8">8</label>
-			    <input type="radio" name="star-input" id="p9" value="9"><label for="p9">9</label>
-			    <input type="radio" name="star-input" id="p10" value="10"><label for="p10">10</label>
 				<input type="hidden" class="avg_rate" name="avg_rate">
 			</span>
 			<output for="star-input"><b>0</b>점</output>
@@ -55,7 +50,7 @@
 		외국인접대<input type="checkbox" value="외국인접대" name="conveninece[]" class="conv">
 		집안잔치<input type="checkbox" value="집안잔치" name="conveninece[]" class="conv"><br/>
 			<input type="text" class="convText" placeholder=' ","로 구분하여 입력해 주세요.'>
-			<input type="hidden" name="conveninece_keyword" value=convArrStr class="convValSum">
+			<input type="hidden" name="convenience_keyword" value=convArrStr class="convValSum">
 		</div>
 		
 		<div class="moodDiv">
@@ -122,11 +117,15 @@
 				
 			</form>
 			
+			
+			
 		</form>
-
+<%-- 	<form id="goDetail" action="/list/detail">
+		<input type="hidden" name="rno" value="${rno.rno}">
+	</form> --%>
 	
 	<button type="button" class="confirm">확인</button>		
-	<button type="button" class="cancle">취소</button>
+	<button type="button" class="btnCancle"  onclick="history.back();">취소</button>
 <!-- jQuery -->
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -166,7 +165,9 @@
 	starRating();
 	
 	
-	// var fileUpload = $(".fileVal").val($(".file"));
+	
+	
+	
 	
 	// input으로 받은값 
 	$(".input").on("click","input",function(){
@@ -192,9 +193,7 @@
 		
 		if(convArr[0] != null){
 			var convArrStr = convArr.join(",");
-		//	convArrStr += (","+convTextStr);
-			//convTextStr.length != 0
-		if (convTextStr.length != 0){ convArrStr += (","+convTextStr)};
+			if (convTextStr.length != 0){ convArrStr += (","+convTextStr)};
 		}else {
 			convArrStr = convTextStr;
 		}
@@ -248,11 +247,6 @@
 		
 	});
 	
-	/* $(".cancle").on("click", function(){
-		return "/list/detail";
-	}); */
-	
-	
 	
 	function showAttach(data){
 		var uploadList = $(".uploadList");
@@ -269,14 +263,6 @@
 		uploadList.html(before);
 	}
 	
-	function checkImageType(fileName){
-		
-		var pattern = /jpg|gif|png|jpeg/i;
-		
-		return fileName.match(pattern);
-
-	}
-
 	
 	
 	$('.uploadList').on("click", "img", function(e){
@@ -288,7 +274,7 @@
 		if(!checkImageType(fileName)){
 			alert("이미지 파일이 아닙니다.")
 		}
-	});
+	}); 
 	
 	
 	$('.uploadList').on("click", "span", function(e){
@@ -305,7 +291,12 @@
 		});
 		
 	});
-
+	
+	
+	/*  $("#btnCancle").on('click', function(){
+     	console.log("취소 버튼 눌림");
+     	location.href="/list/detail?rno="+${rno.rno};
+     }); */
 </script>	
 		
 </body>

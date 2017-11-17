@@ -4,17 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
   
 <title>Insert title here</title>
 <style>
 	.fileDrop{
-		width: 50%;
-		height: 200px;
-		border: 1px dotted blue;
+		width: 0px;
+		height: 0px;
+		border: 0px;
 	}
 </style>
 </head>
@@ -23,12 +19,20 @@
 <div class="fileDrop"></div>
 <div class="uploadList"></div>
 
-	<form method="post" enctype="multipart/form-data">
+	<form method="post" enctype="multipart/form-data" target="zero">
 		<input type="file" name="f1">
 		<button>upload</button>
 	</form>
+	     <iframe name="zero"></iframe>
 
+<script src="/resources/vendor/jquery/jquery.min.js"></script>    
 <script>
+function showAttach(){
+    alert("parent");
+ }
+/*
+
+
 	$(".fileDrop").on("dragenter dragover", function(event){
 		event.preventDefault();
 		
@@ -59,6 +63,7 @@
 	$(".fileDrop").on("drop", function(event){
 		event.preventDefault();
 	});
+ */
 </script>
 		
 

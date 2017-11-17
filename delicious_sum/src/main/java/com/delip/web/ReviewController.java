@@ -19,6 +19,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,7 +34,6 @@ import lombok.extern.java.Log;
 @Controller
 @RequestMapping("/register/*")
 public class ReviewController {
-	
 	@Autowired
 	ReviewRegisterService rService;
 	
@@ -44,16 +44,17 @@ public class ReviewController {
 	DetailService dService;
 	
 	@GetMapping("/review")
-	public void reviewRegister(int rno, Model model) {
-		 model.addAttribute("rno", rno);
+	public void reviewRegister(@RequestParam(name="rno") int rno, Model model) {
+		 
+		model.addAttribute("rno", dService.get(rno));
 	}
 	
 	@PostMapping("/review")
-	@Transactional
+//	@Transactional
 	public String reviewRegister(Photo photo, ReviewRegister reviewRegister, MultipartFile file, Model model) {
 		
 		//UUID(범용 고유 식별자)
-		String uuid = UUID.randomUUID()+".jpg";
+		String uuid = UUID.randomUUID()+"";
 		
 		String uploadName = uuid + "_" + file.getOriginalFilename();
 		
@@ -63,7 +64,7 @@ public class ReviewController {
 			OutputStream out = new FileOutputStream("C:\\zzz\\" + uploadName); 
 			FileCopyUtils.copy(file.getInputStream(), out);
 			if(file.getContentType().startsWith("image")) {
-				//model.addAttribute("isImage", file.getContentType().startsWith("image"));
+				model.addAttribute("isImage", file.getContentType().startsWith("image"));
 				makeThumbnail(uploadName);
 			}
 
@@ -77,10 +78,10 @@ public class ReviewController {
 		
 		log.info(""+ reviewRegister);
 		
-		rService.reviewRegister(reviewRegister);
-		pService.register(photo);
+		rService.reviewRegister(reviewRegister, photo);
+		//pService.register(photo);
 		
-		return "redirect:/list/detail";
+		return "redirect:/list/detail?rno="+reviewRegister.getRno();
 		
 	}
 	
@@ -106,13 +107,20 @@ public class ReviewController {
 	
 	private String makeThumbnail(String fileName)throws Exception{
         
+			
+		
 		  BufferedImage sourceImg = 
 		      ImageIO.read(new File("C:\\zzz\\", fileName));
 		  
-		  BufferedImage destImg = 
-		      Scalr.resize(sourceImg, 
-		          Scalr.Method.AUTOMATIC, 
-		          Scalr.Mode.FIT_TO_HEIGHT,100);
+		  int dw = 150, dh = 100;
+	      int ow = sourceImg.getWidth(); 
+	      int oh = sourceImg.getHeight();
+	      int nw = ow; 
+	      int nh = (ow * dh) / dw;
+	      if(nh > oh) { nw = (oh * dw) / dh; nh = oh; }
+	      BufferedImage cropImg = Scalr.crop(sourceImg, (ow-nw)/2, (oh-nh)/2, nw, nh);
+		  
+	      BufferedImage destImg = Scalr.resize(cropImg, dw, dh);
 		  
 		  String thumbnailName = "C:\\zzz\\" + File.separator +"s_"+ fileName; //s_ thumnail인지 구분하기 위해 추가
 		  
@@ -125,7 +133,5 @@ public class ReviewController {
 		  
 		  return thumbnailName;
 		} 
-	
-
 	
 }

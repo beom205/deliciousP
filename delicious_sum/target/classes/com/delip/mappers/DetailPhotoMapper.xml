@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.delip.mappers.DetailPhotoMapper">
+
+<insert id="restPhoto">
+<selectKey resultType="int" keyProperty="rno" order="BEFORE">
+	SELECT MAX(rno) FROM dtb_restaurant
+</selectKey>
+insert into dtb_rest_photo(rno, file_name)
+ values (#{rno}, #{file_name})
+</insert>
+
+<update id="modiPhoto">
+update dtb_rest_photo set file_name
+ where rno = #{rno}
+</update>
+
+<delete id="delPhoto">
+	delete from dtb_rest_photo where rno = #{rno}
+</delete>
+
+</mapper>

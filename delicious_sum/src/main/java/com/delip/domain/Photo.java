@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class Photo {
-	private String file_name;
-//	private int rno, bno;
+
+	private int rno;
+	private int bno;
+	private String file_path,file_name;
 }

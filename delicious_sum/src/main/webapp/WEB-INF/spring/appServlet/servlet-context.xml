@@ -24,26 +24,32 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.delip.web" />
-	<beans:bean id="sampleInterceptor" class="com.delip.interceptor.SampleInterceptor2">
-	</beans:bean>  
+	
+	
+	<!-- 파일 업로드 -->
+		<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
+<!-- 필요한지 불확실한 파일업로드 -->
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="C:\\zzz\\upload">
+		</beans:constructor-arg>
+	</beans:bean>
+	
 	<!-- interceptor bean 설정 -->
-	<beans:bean id="LoginAfter" class="com.delip.interceptor.LoginInterceptor"></beans:bean>
-	
+	<beans:bean id="loginAfter" class="com.delip.interceptor.LoginInterceptor"></beans:bean>
+	<beans:bean id="checkinterceptor" class="com.delip.interceptor.CheckInterceptor"></beans:bean>
 	<interceptors>
-		<interceptor>
-			<mapping path="/member/login" />
-			<beans:ref bean="LoginAfter" />
-		</interceptor>
-		<interceptor>
-			<mapping path="/member/loginPost" />
-			<beans:ref bean="sampleInterceptor" />
-		</interceptor>
+		 <interceptor>
+                <mapping path="/member/loginPost" />
+                <beans:ref bean="loginAfter" />
+         </interceptor>
 	</interceptors>
-
-<beans:bean id="multipartResolver"
-   class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-  <beans:property name="maxUploadSize" value="10485760"></beans:property>
- </beans:bean>	
-	
-	
+	<interceptors>
+		 <interceptor>
+                <mapping path="/member/samplet" />
+                <beans:ref bean="checkinterceptor" />
+         </interceptor>
+	</interceptors>
 </beans:beans>

@@ -1,51 +1,13 @@
-<!-- <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h1>로그인 폼</h1>
-<form action="/member/login" method="get">
-	<table>
-		<tr>
-		<td>
-			<label>ID : </label> 
-			<input type="text" name="userId">
-		</td>
-		<td>
-			<label>PW : </label> 
-			<input type="text" name="userPw">
-			<input type="submit" value="로그인">
-		</td>
-		</tr> 
-	</table> <br>
-			<a href="/">홈으로 돌아가기</a>
-			<a href="/member/idinquiry">아이디/비밀번호찾기</a>
-</form>
-</body>
-</html> -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인</title>
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-<!-- Compiled and minified JavaScript -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<!-- CSS  -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
-<link href="/resources/css/materialize.css" type="text/css"
-	rel="stylesheet" media="screen,projection" />
-<link href="/resources/css/style.css" type="text/css" rel="stylesheet"
-	media="screen,projection" />
-
+<%@include file="../include/mate.html"%>
 <!-- 로고 폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Pacifico"
 	rel="stylesheet">
@@ -114,48 +76,51 @@ html, body {
 <body>
 	<div id="login-page" class="row">
 		<div class="col s12 z-depth-4 card-panel">
-			<form class="login-form">
+			<form class="login-form" action="/member/loginPost" method="post">
 				<div class="row">
 					<div class="input-field col s12 center">
 						<!-- <img src="images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login"/> -->
 						<p class="center login-form-text">LOGIN</p>
 					</div>
 				</div>
-				
 				<div class="row margin">
 					<div class="input-field col s12">
 						<!-- <i class="mdi-social-person-outline prefix"></i> -->
-						<i class="material-icons prefix">account_circle</i> 
-						<input
-							id="userId" name="userId" type="text"
+						<i class="material-icons prefix">account_circle</i> <input
+							id="userId" name="uid" type="text"
 							style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;); cursor: auto;" />
 						<label for="username" data-error="wrong" class="center-align"
 							data-success="right">아이디(이메일)</label>
 					</div>
 				</div>
-				
+
 				<div class="row margin">
 					<div class="input-field col s12">
 						<!-- <i class="mdi-action-lock-outline prefix"></i> -->
-						<i class="material-icons prefix">vpn_key</i> 
-						<input id="userPw"
-							name="userPw" type="password"
+						<i class="material-icons prefix">vpn_key</i> <input id="userPw"
+							name="upw" type="password"
 							style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=&quot;);" />
 						<label for="password">비밀번호</label>
 					</div>
 				</div>
-
-	
 				<div class="row">
-				
+					<div class=" col s12">
+						<input type="checkbox" id="remember" name="remember" /> <label
+							for="remember">Remember Me</label>
+					</div>
+				</div>
+				<div class="row">
+
 					<div class="input-field col s12">
 						<button type="submit" class="btn waves-effect waves-light col s12">로그인</button>
 					</div>
-					
+
 					<div class="input-field col s12">
-						<a href="index.html" class="btn waves-effect waves-light col s12 light-blue darken-4">페이스북 로그인</a>
+						<a href="index.html"
+							class="btn waves-effect waves-light col s12 light-blue darken-4">페이스북
+							로그인</a>
 					</div>
-					
+
 				</div>
 
 				<div class="row">
@@ -174,7 +139,13 @@ html, body {
 		</div>
 	</div>
 	<script>
-		$(".login-form").validate({
+		var msg = '${param.msg}';
+
+		if (msg == 'false') {
+			alert("로그인에 문제가 있음");
+		}
+
+		/* $(".login-form").validate({
 			rules : {
 				username : {
 					required : true,
@@ -201,7 +172,7 @@ html, body {
 					error.insertAfter(element);
 				}
 			}
-		});
+		}); */
 	</script>
 </body>
 </html>
