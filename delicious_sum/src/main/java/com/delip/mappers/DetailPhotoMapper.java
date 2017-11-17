@@ -9,5 +9,7 @@ public interface DetailPhotoMapper extends CRUDMapper<Photo, Integer> {
 	public void regiPhotoTest(Photo photo);
 	
 	public void modiPhoto(Photo photo);
+	
+	public String readPhoto(int rno);
 
 }

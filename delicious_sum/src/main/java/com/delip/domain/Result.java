@@ -6,7 +6,7 @@ import lombok.Data;
 public class Result {
 	
 	private int rno;
-	private String rname, raddress, rtel, rhomepage, file_name, file_path, rtime, rholiday ;
+	private String rinfo, rname, raddress, rtel, rhomepage, file_name, file_path, rtime, rholiday ;
 	private double rlat, rlng;
 	
 }

@@ -118,6 +118,10 @@
                     <th scope="row">정보</th>
                     <td><h2>${detail.rinfo}</h2></td>
                 </tr>          
+                <tr>
+                    <th scope="row">이미지</th>
+                    <td><h2><img src="/list/display?name=${photo}"/> </h2></td>
+                </tr>
             </tbody>
         </table>
     <form name="form1" id="formId">    

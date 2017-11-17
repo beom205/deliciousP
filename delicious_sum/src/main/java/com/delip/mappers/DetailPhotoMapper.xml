@@ -13,6 +13,11 @@ insert into dtb_rest_photo(rno, file_name)
  values (#{rno}, #{file_name})
 </insert>
 
+<select id="readPhoto" resultType="String">
+	select file_name from dtb_rest_photo 
+	where rno = #{rno}
+</select>
+
 <update id="modiPhoto">
 update dtb_rest_photo set file_name
  where rno = #{rno}

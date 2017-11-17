@@ -25,9 +25,11 @@ public interface DetailMapper extends CRUDMapper<Detail, Integer> {
 			+ "values(#{rname},#{raddress},#{rtel},#{rhomepage},#{rinfo},#{rholiday},#{rtime},#{rlng},#{rlat})")
 	public void register(Detail detail);
 
+	
 	@Select("select * from dtb_restaurant where rno = #{rno}")
 	public Detail readDetail(int rno);
 
+	
 	@Update("update dtb_restaurant set " 
 			+ " rname = #{rname}," 
 			+ " raddress = #{raddress},"
@@ -42,4 +44,6 @@ public interface DetailMapper extends CRUDMapper<Detail, Integer> {
 	@Delete("delete from dtb_restaurant where  rno = #{rno}")
 	public void deleteDetail(int rno);
 
+	
+	public int readRNO();
 }
