@@ -64,7 +64,7 @@ public class DetailController {
 		String uploadName = uuid + "_" + f1.getOriginalFilename();
 		// String thumbnailName = "";
 		try {
-			OutputStream out = new FileOutputStream(uploadName);
+			OutputStream out = new FileOutputStream("C:\\zzz\\" +uploadName);
 			FileCopyUtils.copy(f1.getInputStream(), out);
 
 			if(f1.getContentType().startsWith("image")) {
@@ -85,34 +85,24 @@ public class DetailController {
 		return "redirect:/list/detail?rno="+registRNO;
 	}
 	
-	@GetMapping(value="/display", produces="image/jpeg") //produces mytype을 안에 값대로 주겠다.
-	@ResponseBody
-	public byte[] display(String name) { // 브라우저에 이미지데이터를 바로 전달
-		
-		try {
-			FileInputStream in = new FileInputStream(name);
-			ByteArrayOutputStream bas = new ByteArrayOutputStream();
-			
-			FileCopyUtils.copy(in, bas);
-			
-			return bas.toByteArray();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-	}
-	
 
 	private String makeThumbnail(String fileName) throws Exception {
-
-		BufferedImage sourceImg = ImageIO.read(new File(fileName));
-
-		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
-
-		String thumbnailName = File.separator + "s_" + fileName;
-
+		
+		BufferedImage sourceImg = 
+			      ImageIO.read(new File("C:\\zzz\\", fileName));
+			  
+			  int dw = 150, dh = 100;
+		      int ow = sourceImg.getWidth(); 
+		      int oh = sourceImg.getHeight();
+		      int nw = ow; 
+		      int nh = (ow * dh) / dw;
+		      if(nh > oh) { nw = (oh * dw) / dh; nh = oh; }
+		      BufferedImage cropImg = Scalr.crop(sourceImg, (ow-nw)/2, (oh-nh)/2, nw, nh);
+			  
+		      BufferedImage destImg = Scalr.resize(cropImg, dw, dh);
+			  
+			  String thumbnailName = "C:\\zzz\\" + File.separator +"s_"+ fileName; //s_ thumnail인지 구분하기 위해 추가
+			  
 		File newFile = new File(thumbnailName); //
 		String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
 
