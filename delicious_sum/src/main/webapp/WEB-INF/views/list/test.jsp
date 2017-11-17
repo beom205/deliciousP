@@ -87,7 +87,6 @@
 body {
 	margin: 0;
 }
-
 /* Create three equal columns that floats next to each other */
 .column1 {
 	float: left;
@@ -95,6 +94,7 @@ body {
 	padding: 10px;
 	height: 200px; /* Should be removed. Only for demonstration */
 	overflow: hidden;
+	border-left: 1px solid #80cbc4;
 }
 
 .column2 {
@@ -109,7 +109,8 @@ body {
 	width: 40%;
 	padding: 10px;
 	height: 200px; /* Should be removed. Only for demonstration */
-	border-left: 1px solid #80cbc4;
+	border-left: 3px double #80cbc4;
+	border-right: 1px solid #80cbc4;
 }
 
 /* Clear floats after the columns */
@@ -121,6 +122,11 @@ body {
 
 p {
 	max-height: 10px;
+}
+hr {
+	height: 1;
+	border-top : 1px solid white;
+	border-bottom : 1px dashed #80cbc4;
 }
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
@@ -323,14 +329,14 @@ p {
 	</div>
 
 		 -->
-	<div style="padding-top: 372px">
+	<div style="padding-top: 372px; margin-left: 30%; margin-right:30%;">
 		<c:forEach items="${list}" begin="0" end="5" var="result">
-			<div class="column1">
+			<div class="column1" >
 				<img src="/resources/samplerest.jpg" style="width: 100%;">
 			</div>
 			<div class="column2">
 				<h2>
-					<c:out value='${result.rname}'></c:out>
+					<a href="/list/detail?rno=${result.rno}"><c:out value='${result.rname}'></c:out></a>
 				</h2>
 				<h5>레스토랑 타입</h5>
 				<h5>
@@ -354,10 +360,8 @@ p {
 						<c:out value='없음'></c:out>
 					</c:if>
 				</h4>
-
-
 			</div>
-			<p>&nbsp;</p>
+				<hr/>
 		</c:forEach>
 		<div id="add"></div>
 	</div>
@@ -384,7 +388,7 @@ p {
 							}
 							content += "<div class='column1'><img src='/resources/samplerest.jpg' style='width:100%;'></div>"
 									+ "<div class='column2'><h2>"
-									+ data[i].rname
+									+ "<a href='/list/detail?rno="+data[i].rno+"'>"+data[i].rname+"</a>"
 									+ "</h2>"
 									+ "<h5>레스토랑 타입</h5>"
 									+ "<h5>"
