@@ -89,12 +89,12 @@
         var rname = $("#rname").val();
         var raddress = $("#raddress").val();
         var rtel = $("#rtel").val();
-        var rhomepage = $("#rhomepage").val();
+       /*  var rhomepage = $("#rhomepage").val();
         var rtime = $("#rtime").val();
         var rholiday = $("#rholiday").val();
         var rinfo = $("#rinfo").val();
         var rlat = $("#rlat").val();
-        var rlng = $("#rlng").val();
+        var rlng = $("#rlng").val(); */
         if(rname == ""){
             document.form1.rname.focus();
             return;
@@ -107,7 +107,7 @@
             document.form1.rtel.focus();
             return;
         }
-        if(rhomepage == ""){
+        /* if(rhomepage == ""){
             document.form1.rhomepage.focus();
             return;
         }
@@ -130,7 +130,7 @@
         if(rlng == ""){
             document.form1.rlng.focus();
             return;
-        }
+        } */
         document.form1.submit();
     });
     
