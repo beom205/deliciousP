@@ -104,12 +104,13 @@ button:hover {
 			
 		<form role=form id="fId" method="get" action="/list/test?keyword='${keyword}'&page=1">
 			<!--   Icon Section   -->
-		<!-- 	&nbsp; &nbsp;<input type="text" placeholder="강남역 중국집" name="keyword"> 
+<!-- 	
+			&nbsp; &nbsp;<input type="text" placeholder="강남역 중국집" name="keyword"> 
 			<button type="submit">
 				<span>Search</span>
-			</button>   -->
+			</button>  
 			
-<!-- 			 <a href="/member/join"	class="right" id="subTitle">회원가입</a> 
+		 <a href="/member/join"	class="right" id="subTitle">회원가입</a> 
 			 <a href="/member/login" class="right" id="subTitle">로그인</a>  -->
 			<input type="hidden" name="page" value="1">
 			
