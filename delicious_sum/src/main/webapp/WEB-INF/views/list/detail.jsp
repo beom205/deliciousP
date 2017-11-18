@@ -4,8 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="/../resources/css/detailstar.css">
-
 <title>상세</title>
 </head>
 <style>
@@ -120,10 +118,6 @@
                     <th scope="row">정보</th>
                     <td><h2>${detail.rinfo}</h2></td>
                 </tr>          
-                <tr>
-                    <th scope="row">이미지</th>
-                    <td><h2><img src="/list/display?name=${photo}"/> </h2></td>
-                </tr>
             </tbody>
         </table>
     <form name="form1" id="formId">    
@@ -158,6 +152,11 @@
     	});
     });
 	
+	function changeFormat(numberFormat){
+		return new Date(numberFormat).toLocaleString()
+	}
+	
+	
 	/* 댓글 스크립트 */
 	 $("#btnRegister").on('click', function(){
         	console.log("버튼 눌림");
@@ -179,7 +178,7 @@
         			rStr += '<div>'+data[i].mphoto+'</div>';
         			rStr += '<div>'+data[i].uid+'</div>';
         			rStr += '<div class="star_'+data[i].avg_rate+'">★★★★★ '+data[i].avg_rate+'</div>';
-        			rStr += '<div>'+data[i].reg_date+'</div>';
+        			rStr += '<div>'+changeFormat(data[i].reg_date)+'</div>';
         			rStr += '<div>'+data[i].content+'</div>';
 					
 					for(var j = 0; j < data[i].rphoto.length ; j++){
