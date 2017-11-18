@@ -4,6 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+	.inputHidden{
+		display: none;
+	}
+</style>
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -12,6 +17,7 @@
 </head>
 <body>
    <form name="form1" method="post" action="${path}/list/register" enctype='multipart/form-data'>
+   	<input type="hidden" name="rtype" >
             <table class="detail_view">
             <colgroup>
                 <col width="15%">
@@ -59,8 +65,22 @@
                     <th scope="row">이미지</th>
                     <td><input type="file" name="f1" id="f1" size="80"></input></td>
                 </tr>
+                
             </tbody>
         </table>
+        	<b>음식점 타입</b>
+        			<input type="text" class="inputHidden" id="iph">
+        			&nbsp&nbsp<select class="selectBox" >
+                		<option value="한식">한식</option>
+                		<option value="일식">일식</option>
+                		<option value="중식">중식</option>
+                		<option value="양식">양식</option>
+                		<option value="뷔페">뷔페</option>
+                		<option value="퓨젼">퓨젼</option>
+                		<option value="7">직접입력</option>
+                	</select>
+                	<br>
+        
           <button type="button" id="btnSave">확인</button>
    		  <button type="reset">취소</button>
    </form>
@@ -81,9 +101,21 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 <script>
-
+	
 	$(document).ready(function(){
 	
+	$(".selectBox").change(function(){
+		console.log($(this).val());
+		
+		if($(".selectBox option:selected").val() == 7){
+			$("#iph").removeClass("inputHidden");
+		}else{
+			$("#iph").addClass("inputHidden");
+			
+		}
+	})	
+		
+		
     $("#btnSave").click(function(){
     	
         var rname = $("#rname").val();
@@ -131,6 +163,16 @@
             document.form1.rlng.focus();
             return;
         } */
+        
+        
+       if($(".selectBox option:selected").val() == 7){
+    	   $("input[name='rtype']").val($("#iph").val()); 
+		}else{
+			$("input[name='rtype']").val($(".selectBox option:selected").val());
+		}
+        
+        
+        
         document.form1.submit();
     });
     
