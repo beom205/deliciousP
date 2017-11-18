@@ -137,9 +137,9 @@ public class DetailController {
 	@PostMapping("/modify")
 	public String modifyPOST(Detail detail, Photo photo, RedirectAttributes rttr, MultipartFile f1) {
 
-		log.info(f1.getOriginalFilename());
+		/*log.info(f1.getOriginalFilename());
 		log.info(f1.getContentType());
-		log.info("" + f1.getSize());
+		log.info("" + f1.getSize());*/
 
 		String uuid = UUID.randomUUID().toString();
 		String uploadName = uuid + "_" + f1.getOriginalFilename();
