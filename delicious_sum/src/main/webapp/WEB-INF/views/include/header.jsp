@@ -21,6 +21,7 @@ body {
 	background-color: #80cbc4;
 	min-width: 100%;
 	max-height: 80px;
+	z-index: 2;
 }
 
 .topnav a {
