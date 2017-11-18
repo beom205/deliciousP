@@ -114,13 +114,6 @@ html, body {
 					<div class="input-field col s12">
 						<button type="submit" class="btn waves-effect waves-light col s12">로그인</button>
 					</div>
-
-					<div class="input-field col s12">
-						<a href="index.html"
-							class="btn waves-effect waves-light col s12 light-blue darken-4">페이스북
-							로그인</a>
-					</div>
-
 				</div>
 
 				<div class="row">
