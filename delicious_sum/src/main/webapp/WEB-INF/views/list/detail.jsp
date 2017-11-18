@@ -123,7 +123,7 @@
                 </tr>          
                 <tr>
                     <th scope="row">이미지</th>
-                    <td><h2><img src="/list/display?name=${photo}"/> </h2></td>
+                    <td><h2><img src="/list/display?name=s_${photo}"/> </h2></td>
                 </tr>
             </tbody>
         </table>
