@@ -374,10 +374,10 @@ hr {
 				<hr/>
 		</c:forEach>
 		<div id="add"></div>
-	</div>
 	<button class="button" id="load">
 		<span>더보기</span>
 	</button>
+	</div>
 </body>
 <script>
 	var page = 1;
@@ -386,26 +386,26 @@ hr {
 		$.getJSON("/list/ajax?page=" + page + "&keyword="+ keyword,
 					function(data) {
 						var num = page * 5 + 1;
-						console.log(data[num]);
 						var content = "";
 						for (var i = num; i < num + 5; i++) {
-							if (data[i].rhomepage == null) {
-								console
-										.log(data[i].rhomepage);
-								data[i].rhomepage = "없음";
-								console
-										.log(data[i].rhomepage);
+							if(data[i] == null) {
+								btn.remove();
+								content += "	<button class='button' id='load'><span>데이터가 더이상 없습니다.</span></button>";
+								$(content).appendTo("#add");
 							}
-							content += "<div class='column1'><img src='/resources/samplerest.jpg' style='width:100%;'></div>"
+							if (data[i].rhomepage == null) {
+								data[i].rhomepage = "없음";
+							}
+							content += "<div class='column1'><img src='/list/display?name=s_"+data[i].file_name+"' onerror='this.src='/resources/default.png'' alt='' style='width: 100%;'></div>"
 									+ "<div class='column2'><h2>"
 									+ "<a href='/list/detail?rno="+data[i].rno+"'>"+data[i].rname+"</a>"
 									+ "</h2>"
-									+ "<h5>레스토랑 타입</h5>"
+									+ "<h5>"+data[i].rinfo+"</h5>"
 									+ "<h5>"
 									+ data[i].raddress
 									+ "</h5>"
 									+ "</div>"
-									+ "<div class='column3'><h4>정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;rinfo(미완)</h4>"
+									+ "<div class='column3'><h4>영업시간 |&nbsp;"+data[i].rtime+"</h4>"
 									+ "<h4>전화번호 |&nbsp;"
 									+ data[i].rtel
 									+ "</h4>"
