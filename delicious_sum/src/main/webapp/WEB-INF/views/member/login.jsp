@@ -142,7 +142,7 @@ html, body {
 		var msg = '${param.msg}';
 
 		if (msg == 'false') {
-			alert("로그인에 문제가 있음");
+			alert("로그인 정보를 확인하세요!!!");
 		}
 
 		/* $(".login-form").validate({
