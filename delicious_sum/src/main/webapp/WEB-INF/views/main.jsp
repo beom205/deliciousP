@@ -236,11 +236,11 @@ body {
 	<div class="topnav" style="position: fixed;">
 		<a class="active" href="/">DeliciousP</a> 
 			
-		<form role=form id="fId" method="get" action="/list/test?keyword='${keyword}'&page=1">
-			 <a href="/member/join"	class="right" id="subTitle">회원가입</a> 
-			 <a href="/member/login" class="right" id="subTitle">로그인</a>
+		<%-- <form role=form id="fId" method="get" action="/list/test?keyword='${keyword}'&page=1">
+			 <!-- <a href="/member/join"	class="right" id="subTitle">회원가입</a> 
+			 <a href="/member/login" class="right" id="subTitle">로그인</a> -->
 			<input type="hidden" name="page" value="1">
-		</form>
+		</form> --%>
 	</div>
 
 <div class="parallax">
@@ -283,10 +283,27 @@ body {
 			<br> <br>
 	</form>
 </div>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
 var words = document.getElementsByClassName('word');
 var wordArray = [];
 var currentWord = 0;
+
+$(document).ready(function(){
+	var $html = $(".topnav").html();
+	var $topnav = $(".topnav");
+	console.log("세션검사 : " + window.sessionStorage.getItem("JSESSIONID"));
+	
+	if(document.cookie.indexOf("login=") != -1 ){
+		$topnav.html($html + '<a href="/member/logout" class="right">로그아웃</a>');
+
+	}else{
+		$topnav.html($html + '<a href="/member/join" class="right">회원가입</a><a href="/member/login" class="right">로그인</a>');
+	}
+		
+});
 
 words[currentWord].style.opacity = 1;
 for (var i = 0; i < words.length; i++) {

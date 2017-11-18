@@ -112,26 +112,29 @@ button:hover {
 			</button>  
 			
 		 <a href="/list/register" class="right" id="subTitle">업체등록</a> 
-		 <a href="/member/join"	class="right" id="subTitle">회원가입</a> 
-			 <a href="/member/login" class="right" id="subTitle">로그인</a>
+		 <!-- <a href="/member/join"	class="right" id="subTitle">회원가입</a> 
+			 <a href="/member/login" class="right" id="subTitle">로그인</a> -->
 			<input type="hidden" name="page" value="1">
 			
 		</form>
 	</div>
 	
-	<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 <script>
-	$(document).ready(function(){
-		var $html = $(".topnav").html();
-		var $topnav = $(".topnav");
-		console.log("세션검사 : " + window.sessionStorage.getItem("JSESSIONID"));
-		
-		if(document.cookie.indexOf("login=") != -1){
-			$topnav.html($html + '<a href="/member/logout" class="right">로그아웃</a>');
+$(document).ready(function(){
+	var $html = $(".topnav").html();
+	var $topnav = $(".topnav");
+	console.log("세션검사 : " + window.sessionStorage.getItem("JSESSIONID"));
+	
+	if(document.cookie.indexOf("login=") != -1 ){
+		$topnav.html($html + '<a href="/member/logout" class="right">로그아웃</a>');
 
-		}else{
-			$topnav.html($html + '<a href="/member/join" class="right">회원가입</a><a href="/member/login" class="right">로그인</a>');
-		}
-	}); 
+	}else{
+		$topnav.html($html + '<a href="/member/join" class="right">회원가입</a><a href="/member/login" class="right">로그인</a>');
+	}
+		
+});
 </script>

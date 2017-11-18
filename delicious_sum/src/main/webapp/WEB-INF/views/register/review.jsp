@@ -237,9 +237,7 @@
 		}else {
 			purposeArrStr = purposeTextStr;
 		}
-		
-		
-		
+
 		$(".convValSum").val(convArrStr);
 		$(".moodValSum").val(moodArrStr);
 		$(".purposeValSum").val(purposeArrStr);

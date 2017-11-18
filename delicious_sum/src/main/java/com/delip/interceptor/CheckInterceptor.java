@@ -41,7 +41,8 @@ public class CheckInterceptor extends HandlerInterceptorAdapter {
 			log.info("세션에 없음 쿠키 확인");
 			Cookie loginCookie = WebUtils.getCookie(request, "login");
 			
-			log.info("쿠키: " + loginCookie.toString());
+			
+			log.info("쿠키: " + loginCookie);
 
 			if (loginCookie != null) {
 				log.info("쿠키는 존재하므로 세션에 담자");

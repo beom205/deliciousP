@@ -161,8 +161,10 @@ html, body {
 				<div class="row margin">
 					<div class="input-field col s12">
 						<!-- <i class="mdi-action-lock-outline prefix"></i> -->
-						<i class="material-icons prefix">vpn_key</i> <input id="rupw" name="rupw" type="password" /> 
+						<i class="material-icons prefix">vpn_key</i> 
+						<input id="pwd_check" name="pwd_check" type="password" onkeyup="checkPwd()"/> 
 						<label for="ruserPw">비밀번호 다시</label>
+						<div id="checkPwd">동일한 암호를 입력하세요.</div>
 					</div>
 				</div>
 
@@ -199,7 +201,10 @@ html, body {
 			</form>
 		</div>
 	</div>
-
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 	<script>
 		$(".login-form").validate({
 			rules : {
@@ -234,6 +239,44 @@ html, body {
 				}
 			}
 		});
+		
+		$(document).ready(function(){
+			var $uid = $("#uid");
+			var $result = $("#result");
+			
+			
+			$uid.blur(function(){
+				$.ajax({
+					url: "/member/checkID",
+					type: "post",
+					data: "uid=" + $uid.val()
+				}).done(function(result){
+					console.log(result);
+					if(result == 1){
+						$result.html("<span> 사용 불가능.</span>");
+					}else{
+						$result.html("<span> 사용 가능.</span>");
+					}
+					
+				});
+			});
+		});
+		
+		 function checkPwd(){
+			  var f1 = document.forms[0];
+			  var pw1 = f1.upw.value;
+			  var pw2 = f1.pwd_check.value;
+			  if(pw1!=pw2){
+			   document.getElementById('checkPwd').style.color = "red";
+			   document.getElementById('checkPwd').innerHTML = "동일한 암호를 입력하세요."; 
+			  }else{
+			   document.getElementById('checkPwd').style.color = "black";
+			   document.getElementById('checkPwd').innerHTML = "암호가 확인 되었습니다."; 
+			   
+			  }
+			  
+			 }
+		
 	</script>
 </body>
 </html> 

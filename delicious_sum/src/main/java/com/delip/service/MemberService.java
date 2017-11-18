@@ -9,4 +9,5 @@ public interface MemberService {
 	public Member getMemberIdAndPw(Member member);
 
 	public Integer checkId(String uid);
+	
 }

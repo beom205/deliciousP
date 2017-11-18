@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+<style>
+  .star_1:before {
+    color: orange;
+    content: "★";
+    font-size: 1em;
+    margin: 0px;
+    position: absolute;
+  }
+  .star_2:before {
+    color: orange;
+    content: "★★";
+    font-size: 1em;
+    margin: 0px;
+    position: absolute;
+  }
+  .star_3:before {
+    color: orange;
+    content: "★★★";
+    font-size: 1em;
+    margin: 0px;
+    position: absolute;
+  }
+  .star_4:before {
+    color: orange;
+    content: "★★★★";
+    font-size: 1em;
+    margin: 0px;
+    position: absolute;
+  }
+  .star_5:before {
+    color: orange;
+    content: "★★★★★";
+    font-size: 1em;
+    margin: 0px;
+    position: absolute;
+  }
+  .hidden{
+  	display: none;
+  }
