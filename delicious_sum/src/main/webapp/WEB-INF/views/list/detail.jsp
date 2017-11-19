@@ -121,7 +121,7 @@ b {
 
       // 마커 위에 표시할 인포윈도우를 생성한다
       var infowindow = new daum.maps.InfoWindow({
-          content : '<div style="padding:5px;">유림이네</div>' // 인포윈도우에 표시할 내용
+          content : '<div style="padding:5px;">${detail.rname}</div>' // 인포윈도우에 표시할 내용
       });
 
       // 인포윈도우를 지도에 표시한다
