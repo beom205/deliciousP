@@ -159,6 +159,11 @@
     	});
     });
 	
+	function dateFormat(cDate){
+		return new Date(cDate).toLocaleDateString();
+	}
+	
+	
 	/* 댓글 스크립트 */
 	 $("#btnRegister").on('click', function(){
         	console.log("버튼 눌림");
@@ -180,7 +185,7 @@
         			rStr += '<div>'+data[i].mphoto+'</div>';
         			rStr += '<div>'+data[i].uid+'</div>';
         			rStr += '<div class="star_'+data[i].avg_rate+'">★★★★★ '+data[i].avg_rate+'</div>';
-        			rStr += '<div>'+data[i].reg_date+'</div>';
+        			rStr += '<div>'+dateFormat(data[i].reg_date)+'</div>';
         			rStr += '<div>'+data[i].content+'</div>';
 					
 					for(var j = 0; j < data[i].rphoto.length ; j++){

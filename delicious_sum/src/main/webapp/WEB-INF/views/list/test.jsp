@@ -308,37 +308,6 @@ hr {
 						});
 	</script>
 
-	<!-- 
-	<div style="padding-top:372px">
-		<table id="lists">
-			<thead>
-				<tr>
-					<th>식당번호</th>
-					<th>식당이름</th>
-					<th>주소</th>
-					<th>식당번호</th>
-					<th>식당이름</th>
-					<th>주소</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${list}" begin="0" end="5" var="result">
-					<tr>
-						<td><c:out value='${result.rno}'></c:out></td>
-						<td><a href="/list/detail?rno=${result.rno}"><c:out value='${result.rname}'></c:out></a></td>
-						<td><c:out value='${result.raddress}'></c:out></td>
-						<td><c:out value='${result.rtel}'></c:out></td>
-						<td><c:out value='${result.rlat}'></c:out></td>
-						<td><c:out value='${result.rlng}'></c:out></td>
-					</tr>
-				</c:forEach>
-			<tbody id="add">
-			</tbody>
-		</table>
-						<button class="button" id="load"><span>더보기</span></button>
-	</div>
-
-		 -->
 	<div style="padding-top: 372px; margin-left: 20%; margin-right:20%;">
 		<c:forEach items="${list}" begin="0" end="5" var="result">
 			<div class="column1" >
@@ -409,7 +378,7 @@ hr {
 									+ "<h4>전화번호 |&nbsp;"
 									+ data[i].rtel
 									+ "</h4>"
-									+ "<h4>홈페이지 |&nbsp;"
+									+ "<h4 class='truncate'>홈페이지 |&nbsp;"
 									+ data[i].rhomepage
 									+ "</h4>"
 									+ "</div><p>&nbsp;</p>";
