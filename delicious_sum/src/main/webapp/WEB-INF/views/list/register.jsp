@@ -157,9 +157,6 @@
            <label>휴무일</label>
 			<input class="w3-input" type="text" name="rholiday" id="rholiday" placeholder="휴무일" style="width: 100%">   
 			
-			<label>영업시간</label>
-			<input class="w3-input" type="text" name="raddress" id="raddress" placeholder="영업시간" style="width: 100%">   
-			
            <label>상세정보</label>
            <textarea rows="5" cols="1" class="w3-input" name="rinfo" id="rinfo" placeholder="해당업체에 대한 설명을 입력해주세요"></textarea><br>
            
