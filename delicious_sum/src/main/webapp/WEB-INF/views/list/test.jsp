@@ -13,13 +13,6 @@
 <link href="https://fonts.googleapis.com/css?family=Pacifico"
 	rel="stylesheet">
 <style>
-#truncate{
-	width:250px;
-	overflow:hidden;
-	white-space:nowrap;
-	text-overflow:ellipsis;
-}
-
 #lists {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
@@ -315,6 +308,37 @@ hr {
 						});
 	</script>
 
+	<!-- 
+	<div style="padding-top:372px">
+		<table id="lists">
+			<thead>
+				<tr>
+					<th>식당번호</th>
+					<th>식당이름</th>
+					<th>주소</th>
+					<th>식당번호</th>
+					<th>식당이름</th>
+					<th>주소</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${list}" begin="0" end="5" var="result">
+					<tr>
+						<td><c:out value='${result.rno}'></c:out></td>
+						<td><a href="/list/detail?rno=${result.rno}"><c:out value='${result.rname}'></c:out></a></td>
+						<td><c:out value='${result.raddress}'></c:out></td>
+						<td><c:out value='${result.rtel}'></c:out></td>
+						<td><c:out value='${result.rlat}'></c:out></td>
+						<td><c:out value='${result.rlng}'></c:out></td>
+					</tr>
+				</c:forEach>
+			<tbody id="add">
+			</tbody>
+		</table>
+						<button class="button" id="load"><span>더보기</span></button>
+	</div>
+
+		 -->
 	<div style="padding-top: 372px; margin-left: 20%; margin-right:20%;">
 		<c:forEach items="${list}" begin="0" end="5" var="result">
 			<div class="column1" >
@@ -322,7 +346,7 @@ hr {
 			</div>
 			<div class="column2">
 				<h2>
-					<a href="/list/detail?rno=${result.rno}"><c:out value='${result.rname}'></c:out></a>
+					<a href="/list/detail?rno=${result.rno}&keyword=${keyword}"><c:out value='${result.rname}'></c:out></a>
 				</h2>
 				<h5><c:out value='${result.rinfo}'></c:out></h5>
 				<h5>
@@ -330,7 +354,7 @@ hr {
 				</h5>
 			</div>
 			<div class="column3">
-				<h4>영업시간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;<c:out value='${result.rtime}'></c:out></h4>
+				<h4>영업시간&nbsp;<c:out value='${result.rtime}'></c:out></h4>
 
 				<h4>
 					전화번호 |&nbsp;
@@ -340,7 +364,7 @@ hr {
 				<h4>
 					홈페이지 |&nbsp;
 					<c:if test='${result.rhomepage ne null}'>
-						<a href="${result.rhomepage}"><div id='truncate'><c:out value='${result.rhomepage}'></c:out></div></a>
+						<c:out value='${result.rhomepage}'></c:out>
 					</c:if>
 					<c:if test='${empty result.rhomepage}'>
 						<c:out value='없음'></c:out>
@@ -363,20 +387,14 @@ hr {
 					function(data) {
 						var num = page * 5 + 1;
 						var content = "";
-						var homepageStr = "";
-						
 						for (var i = num; i < num + 5; i++) {
 							if(data[i] == null) {
 								btn.remove();
 								content += "	<button class='button' id='load'><span>데이터가 더이상 없습니다.</span></button>";
 								$(content).appendTo("#add");
 							}
-							if (data[i].rhomepage == "없음" || data[i].rhomepage == null) {
-								console.log(data[i].rhomepage);
-								homepageStr="없음";
-							}else{
-								
-								homepageStr="<a href='"+data[i].rhomepage+"'><div id='truncate'>"+data[i].rhomepage+"</div></a>";
+							if (data[i].rhomepage == null) {
+								data[i].rhomepage = "없음";
 							}
 							content += "<div class='column1'><img src='/list/display?name=s_"+data[i].file_name+"' onerror='this.src='/resources/default.png'' alt='' style='width: 100%;'></div>"
 									+ "<div class='column2'><h2>"
@@ -391,8 +409,8 @@ hr {
 									+ "<h4>전화번호 |&nbsp;"
 									+ data[i].rtel
 									+ "</h4>"
-									+ "<h4>홈페이지 |&nbsp;"
-									+ homepageStr
+									+ "<h4 class='truncate'>홈페이지 |&nbsp;"
+									+ data[i].rhomepage
 									+ "</h4>"
 									+ "</div><p>&nbsp;</p>";
 						}
