@@ -13,6 +13,13 @@
 <link href="https://fonts.googleapis.com/css?family=Pacifico"
 	rel="stylesheet">
 <style>
+#truncate{
+	width:250px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+
 #lists {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
@@ -333,7 +340,7 @@ hr {
 				<h4>
 					홈페이지 |&nbsp;
 					<c:if test='${result.rhomepage ne null}'>
-						<c:out value='${result.rhomepage}'></c:out>
+						<a href="${result.rhomepage}"><div id='truncate'><c:out value='${result.rhomepage}'></c:out></div></a>
 					</c:if>
 					<c:if test='${empty result.rhomepage}'>
 						<c:out value='없음'></c:out>
@@ -356,14 +363,20 @@ hr {
 					function(data) {
 						var num = page * 5 + 1;
 						var content = "";
+						var homepageStr = "";
+						
 						for (var i = num; i < num + 5; i++) {
 							if(data[i] == null) {
 								btn.remove();
 								content += "	<button class='button' id='load'><span>데이터가 더이상 없습니다.</span></button>";
 								$(content).appendTo("#add");
 							}
-							if (data[i].rhomepage == null) {
-								data[i].rhomepage = "없음";
+							if (data[i].rhomepage == "없음" || data[i].rhomepage == null) {
+								console.log(data[i].rhomepage);
+								homepageStr="없음";
+							}else{
+								
+								homepageStr="<a href='"+data[i].rhomepage+"'><div id='truncate'>"+data[i].rhomepage+"</div></a>";
 							}
 							content += "<div class='column1'><img src='/list/display?name=s_"+data[i].file_name+"' onerror='this.src='/resources/default.png'' alt='' style='width: 100%;'></div>"
 									+ "<div class='column2'><h2>"
@@ -378,8 +391,8 @@ hr {
 									+ "<h4>전화번호 |&nbsp;"
 									+ data[i].rtel
 									+ "</h4>"
-									+ "<h4 class='truncate'>홈페이지 |&nbsp;"
-									+ data[i].rhomepage
+									+ "<h4>홈페이지 |&nbsp;"
+									+ homepageStr
 									+ "</h4>"
 									+ "</div><p>&nbsp;</p>";
 						}
