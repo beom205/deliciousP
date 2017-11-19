@@ -106,7 +106,7 @@ html, body {
 				<div class="row">
 					<div class=" col s12">
 						<input type="checkbox" id="remember" name="remember" /> <label
-							for="remember">Remember Me</label>
+							for="remember">로그인 상태 유지</label>
 					</div>
 				</div>
 				<div class="row">
