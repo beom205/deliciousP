@@ -165,13 +165,17 @@ public class DetailController {
 
 	// 삭제
 	@PostMapping("/remove")
-	public String remove(@RequestParam(name = "rno") int rno, RedirectAttributes red) {
+	public String remove(@RequestParam(name = "rno") int rno, RedirectAttributes red, @RequestParam(name="keyword") String keyword, Model model) {
 
+		model.addAttribute("keyword", keyword);
+		
 		service.delete(rno);
 
 		red.addFlashAttribute("msg", "ok");
-
-		return "/list/resultlist";
+		
+		log.info("디테일 키워드"+keyword);
+		
+		return "redirect:/list/test?keyword="+keyword;
 
 	}
 	
@@ -182,6 +186,5 @@ public class DetailController {
  		
  		return rService.getReviews(rno);
 	  }
-	
-	
+	 
 }
