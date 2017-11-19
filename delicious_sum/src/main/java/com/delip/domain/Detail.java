@@ -6,7 +6,7 @@ import lombok.Data;
 public class Detail {
 	
 	private int rno, rcount, ravg;
-	private String rname, raddress, rtel, rhomepage, rholiday, rtime, rinfo;
+	private String rname, raddress, rtel, rhomepage, rholiday, rtime, rinfo, rtype;
 	private double rlat, rlng;		
 	
 }

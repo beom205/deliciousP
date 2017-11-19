@@ -21,8 +21,8 @@ public interface DetailMapper extends CRUDMapper<Detail, Integer> {
 			"where rv.rno = #{rno}")
 	public List<ReviewRegister> readReview(int rno);
 	
-	@Insert("insert into dtb_restaurant(rname, raddress, rtel, rhomepage, rinfo, rholiday, rtime,rlng,rlat)"
-			+ "values(#{rname},#{raddress},#{rtel},#{rhomepage},#{rinfo},#{rholiday},#{rtime},#{rlng},#{rlat})")
+	@Insert("insert into dtb_restaurant(rname, raddress,rtype, rtel, rhomepage, rinfo, rholiday, rtime,rlng,rlat)"
+			+ "values(#{rname},#{raddress},#{rtype},#{rtel},#{rhomepage},#{rinfo},#{rholiday},#{rtime},#{rlng},#{rlat})")
 	public void register(Detail detail);
 
 	

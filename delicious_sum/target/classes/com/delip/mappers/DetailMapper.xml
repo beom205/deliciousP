@@ -9,8 +9,8 @@
 </select>
 	
 <insert id="create">
-		insert into dtb_restaurant (rname,raddress,rtel,rhomepage,rinfo, rholiday, rtime)
-		values (#{rname},#{raddress},#{rtel},#{rhomepage},#{rinfo},#{rholiday},#{rtime})
+		insert into dtb_restaurant (rname,raddress,rtel,rhomepage,rinfo, rholiday, rtime, rtype)
+		values (#{rname},#{raddress},#{rtel},#{rhomepage},#{rinfo},#{rholiday},#{rtime},#{rtype})
 </insert>
 
 <select id="readRNO" resultType="Integer">

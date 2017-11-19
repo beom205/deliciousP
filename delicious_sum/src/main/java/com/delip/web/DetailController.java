@@ -59,7 +59,8 @@ public class DetailController {
 		log.info(f1.getOriginalFilename());
 		log.info(f1.getContentType());
 		log.info("" + f1.getSize());
-
+		log.info("RTEL::::::::::::::   : "+detail.getRtel());
+		log.info("RType::::::::::::::   : "+detail.getRtype());
 		String uuid = UUID.randomUUID().toString();
 		String uploadName = uuid + "_" + f1.getOriginalFilename();
 		// String thumbnailName = "";
