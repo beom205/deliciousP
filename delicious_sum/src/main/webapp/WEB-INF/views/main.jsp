@@ -294,7 +294,7 @@ $(document).ready(function(){
 		$topnav.html($html + '<a href="/member/logout" class="right">로그아웃</a><a href="/list/register" class="right" id="subTitle">업체등록</a>');
 
 	}else{
-		$topnav.html($html + '<a href="/member/join" class="right">회원가입</a><a href="/member/login" class="right">로그인</a>');
+		$topnav.html($html + '<a href="/member/join" class="right">회원가입</a><a href="/member/login" class="right">로그인</a> <a href="/list/register" class="right" id="subTitle">업체등록</a>');
 	}
 		
 });
