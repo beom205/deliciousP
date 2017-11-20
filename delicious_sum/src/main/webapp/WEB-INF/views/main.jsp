@@ -288,9 +288,9 @@ var currentWord = 0;
 $(document).ready(function(){
 	var $html = $(".topnav").html();
 	var $topnav = $(".topnav");
-	console.log("세션검사 : " + window.sessionStorage.getItem("JSESSIONID"));
+	console.log("세션값" + '${login}');
 	
-	if(document.cookie.indexOf("login=") != -1 ){
+	if(document.cookie.indexOf("login=") != -1 || '${login}'){
 		$topnav.html($html + '<a href="/member/logout" class="right">로그아웃</a><a href="/list/register" class="right" id="subTitle">업체등록</a>');
 
 	}else{

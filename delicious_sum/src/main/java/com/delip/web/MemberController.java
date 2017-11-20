@@ -80,6 +80,7 @@ public class MemberController {
 
 		if (member != null) {
 			model.addAttribute("member", member.getUid());
+			model.addAttribute("nickname",member.getUname());
 			model.addAttribute("remember", remember);
 			return "redirect:/";
 		}

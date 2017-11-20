@@ -20,7 +20,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		// 사용자가 로그인을 했다면...
 		// Model안에 member이름으로 값이 뭔가 있을 것이다.
 		Object obj = modelAndView.getModel().get("member");
-		
+		Object obj2 = modelAndView.getModel().get("nickname");
 		if(obj == null) {	
 			response.sendRedirect("/member/login");
 			return;
@@ -29,7 +29,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		log.info("session : "  + session);
 		
 		session.setAttribute("login", obj);
-		
+		session.setAttribute("nickname", obj2);
 		log.info("session set후 : "  + session.getAttribute("login"));
 		log.info("정상적으로 로그인 된 사용자: " + obj);
 		

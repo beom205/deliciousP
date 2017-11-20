@@ -128,9 +128,8 @@ button:hover {
 $(document).ready(function(){
 	var $html = $(".topnav").html();
 	var $topnav = $(".topnav");
-	console.log("세션검사 : " + window.sessionStorage.getItem("JSESSIONID"));
 	
-	if(document.cookie.indexOf("login=") != -1 ){
+	if(document.cookie.indexOf("login=") != -1){
 		$topnav.html($html + '<a href="/member/logout" class="right">로그아웃</a>');
 
 	}else{

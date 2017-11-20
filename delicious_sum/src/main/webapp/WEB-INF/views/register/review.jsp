@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="../include/centerLogoHeader.jsp"%>
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -103,6 +105,7 @@ button.replace {
   cursor: pointer;
 }
 button.replace:hover{
+
   background: #26a69a;
   transition: 0.5s;
 }
@@ -114,6 +117,7 @@ button.replace:hover{
 	<form role="form" id="fid" method="post" enctype="multipart/form-data">
 
 		<input type="hidden" name="rno" value="${rno.rno}">
+		<input type="hidden" name="uid" value="<%=session.getAttribute("nickname")%>">
 <h3>전체 평점&nbsp;* </h3>
 		 <span class="star-input">
 			<span class="input">
@@ -489,7 +493,11 @@ button.replace:hover{
 	
 	<button type="button" class="confirm">확인</button>		
 	<button type="button" class="btnCancle"  onclick="history.back();">취소</button>
+	
 </div>
+
+ 
+
 <!-- jQuery -->
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -527,11 +535,6 @@ button.replace:hover{
 	};
     
 	starRating();
-	
-	
-	
-	
-	
 	
 	// input으로 받은값 
 	$(".input").on("click","input",function(){
