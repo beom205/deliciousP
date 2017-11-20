@@ -40,6 +40,7 @@ public class CheckInterceptor extends HandlerInterceptorAdapter {
 		if (value == null) {
 			log.info("세션에 없음 쿠키 확인");
 			Cookie loginCookie = WebUtils.getCookie(request, "login");
+			Cookie nicknameCookie = WebUtils.getCookie(request, "nickname");
 			
 			
 			log.info("쿠키: " + loginCookie);
@@ -47,6 +48,7 @@ public class CheckInterceptor extends HandlerInterceptorAdapter {
 			if (loginCookie != null) {
 				log.info("쿠키는 존재하므로 세션에 담자");
 				request.getSession().setAttribute("login", loginCookie.getValue());
+				request.getSession().setAttribute("nickname", nicknameCookie.getValue());
 				return true;
 			}
 		}

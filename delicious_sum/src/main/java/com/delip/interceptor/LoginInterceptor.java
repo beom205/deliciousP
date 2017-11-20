@@ -41,9 +41,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			if (remember) {
 				log.info("쿠키 만들러옴 ");
 				Cookie loginCookie = new Cookie("login", obj.toString()); // 쿠키에는 문자열만 가능
+				Cookie nicknameCookie = new Cookie("nickname", obj2.toString()); // 쿠키에는 문자열만 가능
 				loginCookie.setMaxAge(60 * 60 * 24 * 7); // 일주일
 				loginCookie.setPath("/");
+				nicknameCookie.setMaxAge(60 * 60 * 24 * 7); // 일주일
+				nicknameCookie.setPath("/");
 				response.addCookie(loginCookie);
+				response.addCookie(nicknameCookie);
 				log.info("쿠키 만듬! ");
 			}
 		} catch (Exception e) {
